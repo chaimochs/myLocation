@@ -1,24 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Router } from 'react-router';
+import {Route, Switch } from "react-router-dom";
 import './App.css';
+import NavBar from './NavBar'
+import Categories from './Categories';
+import AddCategory from './AddCategory';
+import history from './history';
 
-function App() {
+function App (props) {
+  const newCategory = (cat) => {
+    let oldCats = JSON.parse(localStorage.getItem("cats"))
+    let newCats = [...oldCats, cat]
+    localStorage.setItem("cats", JSON.stringify(newCats));
+    history.push('/')
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router history={history}>
+        <div className={'wrapper'}>
+        <NavBar/>
+            <Switch>
+               <Route exact path={'/'} component={Categories}/>
+               <Route path='/AddCategory' render={(props) => <AddCategory {...props}  newCategory={newCategory}/>} />
+            
+            </Switch>
+        </div>
+    </Router>
     </div>
   );
 }
