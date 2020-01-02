@@ -10,6 +10,11 @@ const AddCategory = props => {
     };
 
     const addNewCat = () => {
+    if(cat.length < 4) {
+        alert('Category Name must contain at least four letters.'); 
+        setCat('')
+        return;
+    } else   
     props.newCategory(cat);
     setCat('')
    };  
@@ -32,7 +37,9 @@ const AddCategory = props => {
                         >
                 Submit
                 </Button>
-                <Button variant="secondary" >
+                <Button variant="secondary" 
+                        onClick={() => setCat('')}
+                >
                 clear
                 </Button>
             </Form>
