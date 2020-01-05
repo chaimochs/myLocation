@@ -7,7 +7,6 @@ import Categories from './Categories';
 import Category from './Category';
 import AddCategory from './AddCategory';
 import history from './history';
-import ViewCategory from './ViewCategory';
 
 function App (props) {
 const [currentCat, setCurrentCat] = useState(''); 
@@ -15,10 +14,6 @@ const [showAction, setShowAction] = useState(false);
 const [editable, setEditable] = useState(false);
 const [title, setTitle] = useState('Categories');
 const [viewLocation, setViewLocation] = useState(false);
-
-const action = () => {
-  setShowAction(true);
-};  
 
 const newCategory = (cat) => {
     let oldCats = JSON.parse(localStorage.getItem("cats"))

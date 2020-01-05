@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { ListGroup, InputGroup, FormControl, Button } from 'react-bootstrap';
-import history from './history';
 import queryString from 'query-string'
+import ViewCategory from './ViewCategory';
 
 const Category = (props) => {
     const values = queryString.parse(props.location.search)
@@ -55,13 +55,7 @@ const Category = (props) => {
             </div>}     
        <div>
         { props.viewLocation ? 
-            <div> 
-                Name: {presentCat.name}
-                <br />
-                Address: {presentCat.address}
-                <br />
-                Coordinates: {presentCat.coordinates}
-            </div> :
+            ViewCategory(presentCat):
         null}  
        </div>
        </div>

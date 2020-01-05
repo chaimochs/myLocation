@@ -2,7 +2,6 @@ import React from 'react';
 import {withRouter} from 'react-router';
 import { Nav, Navbar } from 'react-bootstrap';
 import queryString from 'query-string'
-import { useParams } from 'react-router-dom';
 
 const NavBar = (props) => {
 
