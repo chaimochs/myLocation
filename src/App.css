@@ -1,0 +1,32 @@
+.categories{
+    text-align: center; 
+    margin: 2% 0 2% 0;
+    color: blue;
+}
+
+.category{
+text-align: center;
+font-size: 2em;
+}
+
+.addCategory{
+    margin: 2% 0 2% 0;
+    font-size: 1.5em;
+}
+
+.addCategory-button {
+    margin: 0 1% 0 1%;
+}
+
+.addCategory-button.add {
+    padding: .5% 3% .5% 3%
+}
+
+#cat-home{
+    font-size: 2em;
+    color: coral;
+}
+
+.navbar-brand {
+    font-size: 2em;
+}

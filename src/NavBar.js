@@ -1,31 +1,54 @@
 import React from 'react';
+import {withRouter} from 'react-router';
 import { Nav, Navbar } from 'react-bootstrap';
+import queryString from 'query-string'
+import { useParams } from 'react-router-dom';
 
 const NavBar = (props) => {
+
+  const values = queryString.parse(props.location.search)
+  const presentCat = values.cat;
+
     return(
         <div>
           <Navbar bg="primary" variant="dark" expand="lg">
-            <Navbar.Brand href="/">Categories</Navbar.Brand>
+            <Navbar.Brand id="cat-home" href="/">{"Home"}</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
             {props.showAction ? 
               <div>
-                <Nav variant="pills"   onClick={() => props.setShowAction(false)}>
+                <Nav variant="pills">
                  <Nav.Item>
-                    <Nav.Link>edit</Nav.Link>
+                    <Nav.Link onClick={() => {
+                      props.setViewLocation(false); 
+                      props.setEditable(!props.editable);
+                    }}
+                    >
+                      Edit
+                    </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link>view</Nav.Link>
+                    <Nav.Link onClick={() => {
+                      props.setViewLocation(false); 
+                      props.deleteCategory(presentCat);
+                      }}
+                    >
+                      Delete
+                    </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link>delete</Nav.Link>
+                    <Nav.Link onClick={() => props.setViewLocation(true)}>
+                      View
+                    </Nav.Link>
                   </Nav.Item>
                   </Nav>
               </div>:
               null
             }
             <Nav className="mr-auto">
-                <Nav.Link href="/AddCategory">Add Category</Nav.Link>
+                <Nav.Link href="/AddCategory">
+                  Add Category
+                </Nav.Link>
             </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -33,4 +56,4 @@ const NavBar = (props) => {
     )
 }
 
-export default NavBar;
+export default withRouter(NavBar);
